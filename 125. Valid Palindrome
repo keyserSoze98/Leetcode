@@ -7,12 +7,12 @@ class Solution {
                 result+=c;
             }
         }
-        result=result.toLowerCase();
+        result=result.toUpperCase();
         
         int a_pointer=0;
         int b_pointer=result.length() - 1;
         
-        while (a_pointer < b_pointer) {
+        while (a_pointer <= b_pointer) {
             if (result.charAt(a_pointer) != result.charAt(b_pointer)) {
                 return false;
             }
