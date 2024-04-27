@@ -1,0 +1,24 @@
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        Set<String> seenRows = new HashSet<>();
+        Set<String> seenCols = new HashSet<>();
+        Set<String> seenBoxes = new HashSet<>();
+
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char currentChar = board[i][j];
+
+                if (currentChar != '.') {
+                    String rowKey = currentChar + " found in row " + i;
+                    String colKey = currentChar + " found in column " + j;
+                    String boxKey = currentChar + " found in sub-box " + i/3 + "-" + j/3;
+
+                    if (!seenRows.add(rowKey) || !seenCols.add(colKey) || !seenBoxes.add(boxKey))
+                        return false;
+                }
+            }
+        }
+
+        return true;
+    }
+}
