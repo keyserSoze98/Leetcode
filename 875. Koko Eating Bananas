@@ -1,0 +1,30 @@
+class Solution {
+    public int minEatingSpeed(int[] piles, int h) {
+        long left = 1;
+        long right = Long.MIN_VALUE;
+
+        for (int bananas : piles) {
+            right = Math.max(right, bananas);
+        }
+
+        while (left <= right) {
+            long mid = left + (right - left) / 2;
+
+            if (canFinish(piles, mid, h)) 
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+
+        return (int)left;
+    }
+
+    private boolean canFinish(int[] piles, long k, int h) {
+        long hours = 0;
+        for (int bananas : piles) {
+            hours += (bananas + k - 1) / k;
+        }
+
+        return hours <= h;
+    }
+}
