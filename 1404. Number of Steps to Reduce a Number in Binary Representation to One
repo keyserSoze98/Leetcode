@@ -1,0 +1,20 @@
+import java.math.BigInteger;
+
+class Solution {
+    public int numSteps(String s) {
+        int steps = 0;
+        BigInteger num = new BigInteger(s, 2);
+
+        while (!num.equals(BigInteger.ONE)) {
+            if (num.testBit(0)) { 
+                num = num.add(BigInteger.ONE);
+            } else {
+                num = num.divide(BigInteger.TWO);
+            }
+
+            steps++;
+        }
+
+        return steps;
+    }
+}
