@@ -1,0 +1,21 @@
+class Solution {
+    public int numberOfSubarrays(int[] nums, int k) {
+        int count = 0;
+        int prefixCount = 0;
+
+        HashMap<Integer, Integer> prefixMap = new HashMap<>();
+        prefixMap.put(0, 1);
+
+        for (int num : nums) {
+            prefixCount += num % 2;
+
+            if (prefixMap.containsKey(prefixCount - k)) {
+                count += prefixMap.get(prefixCount - k);
+            }
+
+            prefixMap.put(prefixCount, prefixMap.getOrDefault(prefixCount, 0) + 1);
+        }
+
+        return count;
+    }
+}
