@@ -1,0 +1,27 @@
+class Solution {
+    public int minimumDeletions(String s) {
+        int totalA = 0;
+        for (char c : s.toCharArray()) {
+            if (c == 'a') {
+                totalA++;
+            }
+        }
+        
+        int deletions = Integer.MAX_VALUE;
+        int aCount = 0;
+        int bCount = 0;
+        
+        for (char c : s.toCharArray()) {
+            if (c == 'a') {
+                aCount++;
+            } else {
+                bCount++;
+            }
+            deletions = Math.min(deletions, bCount + (totalA - aCount));
+        }
+        
+        deletions = Math.min(deletions, Math.min(totalA, bCount));
+        
+        return deletions;
+    }
+}
